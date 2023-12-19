@@ -2,12 +2,12 @@ package com.example.java_task_2.dao;
 
 import com.example.java_task_2.data.Customer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CustomerDAO {
-    Customer getCustomer(String email);
-    ArrayList<Customer> getCustomers();
+    Customer findCustomer(String email);
+    List<Customer> findCustomers();
     boolean createCustomer(Customer customer);
     boolean updateCustomer(Customer customer);
-    boolean updateCustomer(String customer);
+    boolean deleteCustomer(String email);
 }

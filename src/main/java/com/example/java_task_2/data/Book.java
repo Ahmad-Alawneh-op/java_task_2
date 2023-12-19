@@ -1,16 +1,21 @@
 package com.example.java_task_2.data;
 
+import org.springframework.data.annotation.Id;
+
 public class Book {
+    @Id
     private String title;
     private Author author;
     private int year;
     private boolean isPublished;
+    private int price;
 
-    public Book(String title, Author author, int year, boolean isPublished) {
+    public Book(String title, Author author, int year, boolean isPublished, int price) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.isPublished = isPublished;
+        this.price = price;
     }
 
     public String getTitle() {
@@ -43,5 +48,13 @@ public class Book {
 
     public void setPublished(boolean published) {
         isPublished = published;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

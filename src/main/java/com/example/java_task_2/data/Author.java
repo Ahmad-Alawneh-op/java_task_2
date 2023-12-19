@@ -1,9 +1,12 @@
 package com.example.java_task_2.data;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.ArrayList;
 
 public class Author {
     private String name;
+    @Id
     private String email;
     private ArrayList<Book> authoredBooks;
 

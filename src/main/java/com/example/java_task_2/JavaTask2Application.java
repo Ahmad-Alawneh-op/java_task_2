@@ -21,7 +21,7 @@ public class JavaTask2Application {
 	}
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		Author author = authorDAO.getAuthor("Email");
+		Author author = authorDAO.findAuthor("Email");
 		System.out.println(author);
 		return String.format("Hello %s!", name);
 	}
