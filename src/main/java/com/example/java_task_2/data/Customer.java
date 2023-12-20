@@ -5,12 +5,14 @@ import org.springframework.data.annotation.Id;
 import java.util.ArrayList;
 
 public class Customer {
-    private String name;
     @Id
+    private String id;
+    private String name;
     private String email;
     private ArrayList<Book> purchasedBooks;
 
     public Customer(String name, String email, ArrayList<Book> purchasedBooks) {
+        this.id = "aaaa";
         this.name = name;
         this.email = email;
         this.purchasedBooks = purchasedBooks;
@@ -38,5 +40,13 @@ public class Customer {
 
     public void setPurchasedBooks(ArrayList<Book> purchasedBooks) {
         this.purchasedBooks = purchasedBooks;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

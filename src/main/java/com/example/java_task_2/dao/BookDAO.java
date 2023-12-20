@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface BookDAO {
-    Book findBook(String title);
+    Book findBook(String id);
     List<Book> findBooks();
-    List<Book> findBooksByAuthor(String authorEmail, boolean includeUnpublished);
-    boolean createBook(Book book);
-    boolean updateBook(Book book);
-    boolean deleteBook(String title);
+    List<Book> findBooksByAuthor(String authorId, boolean includeUnpublished);
+    Book createBook(Book book);
+    Book updateBook(Book book);
+    void deleteBook(String id);
 }

@@ -2,18 +2,17 @@ package com.example.java_task_2.data;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.ArrayList;
-
 public class Author {
-    private String name;
-    @Id
-    private String email;
-    private ArrayList<Book> authoredBooks;
 
-    public Author(String name, String email, ArrayList<Book> authoredBooks) {
+    @Id
+    private String id;
+    private String name;
+    private String email;
+
+    public Author(String name, String email) {
+        this.id = "aaaa";
         this.name = name;
         this.email = email;
-        this.authoredBooks = authoredBooks;
     }
 
     public String getName() {
@@ -32,11 +31,11 @@ public class Author {
         this.email = email;
     }
 
-    public ArrayList<Book> getAuthoredBooks() {
-        return authoredBooks;
+    public String getId() {
+        return id;
     }
 
-    public void setAuthoredBooks(ArrayList<Book> authoredBooks) {
-        this.authoredBooks = authoredBooks;
+    public void setId(String id) {
+        this.id = id;
     }
 }

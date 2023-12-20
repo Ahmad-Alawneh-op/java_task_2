@@ -3,18 +3,19 @@ package com.example.java_task_2.dao;
 import com.example.java_task_2.data.Book;
 import com.example.java_task_2.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class BookDAOImpl implements BookDAO {
-
     @Autowired
     BookRepository bookRepo;
 
     @Override
-    public Book findBook(String title) {
-        Optional<Book> value = bookRepo.findById(title);
+    public Book findBook(String id) {
+        Optional<Book> value = bookRepo.findById(id);
         return value.orElse(null);
     }
 
@@ -24,40 +25,22 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> findBooksByAuthor(String authorEmail, boolean includeUnpublished) {
-        return bookRepo.findBooksByAuthorEmail(authorEmail, includeUnpublished);
+    public List<Book> findBooksByAuthor(String authorId, boolean includeUnpublished) {
+        return bookRepo.findBooksByAuthorEmail(authorId, includeUnpublished);
     }
 
     @Override
-    public boolean createBook(Book book) {
-        try {
-            bookRepo.insert(book);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error creating book!: " + exception.getMessage());
-            return false;
-        }
+    public Book createBook(Book book) {
+        return bookRepo.insert(book);
     }
 
     @Override
-    public boolean updateBook(Book book) {
-        try {
-            bookRepo.save(book);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error updating book!: " + exception.getMessage());
-            return false;
-        }
+    public Book updateBook(Book book) {
+        return bookRepo.save(book);
     }
 
     @Override
-    public boolean deleteBook(String title) {
-        try {
-            bookRepo.deleteById(title);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error deleting book!: " + exception.getMessage());
-            return false;
-        }
+    public void deleteBook(String id) {
+        bookRepo.deleteById(id);
     }
 }

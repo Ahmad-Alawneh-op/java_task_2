@@ -5,9 +5,9 @@ import com.example.java_task_2.data.Customer;
 import java.util.List;
 
 public interface CustomerDAO {
-    Customer findCustomer(String email);
+    Customer findCustomer(String id);
     List<Customer> findCustomers();
-    boolean createCustomer(Customer customer);
-    boolean updateCustomer(Customer customer);
-    boolean deleteCustomer(String email);
+    Customer createCustomer(Customer customer);
+    Customer updateCustomer(Customer customer);
+    void deleteCustomer(String id);
 }

@@ -5,9 +5,9 @@ import com.example.java_task_2.data.Author;
 import java.util.List;
 
 public interface AuthorDAO {
-    Author findAuthor(String email);
+    Author findAuthor(String id);
     List<Author> findAuthors();
-    boolean createAuthor(Author author);
-    boolean updateAuthor(Author author);
-    boolean deleteAuthor(String email);
+    Author createAuthor(Author author);
+    Author updateAuthor(Author author);
+    void deleteAuthor(String id);
 }

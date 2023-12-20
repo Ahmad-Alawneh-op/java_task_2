@@ -15,8 +15,8 @@ public class AuthorDAOImpl implements AuthorDAO {
     private AuthorRepository authorRepo;
 
     @Override
-    public Author findAuthor(String email) {
-        Optional<Author> value = authorRepo.findById(email);
+    public Author findAuthor(String id) {
+        Optional<Author> value = authorRepo.findById(id);
         return value.orElse(null);
     }
 
@@ -26,35 +26,17 @@ public class AuthorDAOImpl implements AuthorDAO {
     }
 
     @Override
-    public boolean createAuthor(Author author) {
-        try {
-            authorRepo.insert(author);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error creating author!: " + exception.getMessage());
-            return false;
-        }
+    public Author createAuthor(Author author) {
+        return authorRepo.insert(author);
     }
 
     @Override
-    public boolean updateAuthor(Author author) {
-        try {
-            authorRepo.save(author);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error updating author!: " + exception.getMessage());
-            return false;
-        }
+    public Author updateAuthor(Author author) {
+        return authorRepo.save(author);
     }
 
     @Override
-    public boolean deleteAuthor(String email) {
-        try {
-            authorRepo.deleteById(email);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error deleting author!: " + exception.getMessage());
-            return false;
-        }
+    public void deleteAuthor(String id) {
+        authorRepo.deleteById(id);
     }
 }

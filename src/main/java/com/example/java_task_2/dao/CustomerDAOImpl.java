@@ -3,18 +3,19 @@ package com.example.java_task_2.dao;
 import com.example.java_task_2.data.Customer;
 import com.example.java_task_2.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CustomerDAOImpl implements CustomerDAO {
-
     @Autowired
     CustomerRepository customerRepo;
 
     @Override
-    public Customer findCustomer(String email) {
-        Optional<Customer> value = customerRepo.findById(email);
+    public Customer findCustomer(String id) {
+        Optional<Customer> value = customerRepo.findById(id);
         return value.orElse(null);
     }
 
@@ -24,35 +25,17 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean createCustomer(Customer customer) {
-        try {
-            customerRepo.insert(customer);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error creating customer!: " + exception.getMessage());
-            return false;
-        }
+    public Customer createCustomer(Customer customer) {
+        return customerRepo.insert(customer);
     }
 
     @Override
-    public boolean updateCustomer(Customer customer) {
-        try {
-            customerRepo.save(customer);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error updating customer!: " + exception.getMessage());
-            return false;
-        }
+    public Customer updateCustomer(Customer customer) {
+        return customerRepo.save(customer);
     }
 
     @Override
-    public boolean deleteCustomer(String email) {
-        try {
-            customerRepo.deleteById(email);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Error deleting customer!: " + exception.getMessage());
-            return false;
-        }
+    public void deleteCustomer(String id) {
+        customerRepo.deleteById(id);
     }
 }

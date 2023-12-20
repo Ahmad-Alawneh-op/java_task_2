@@ -1,21 +1,27 @@
 package com.example.java_task_2.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 public class Book {
     @Id
+    private String id;
     private String title;
+    @DocumentReference()
     private Author author;
     private int year;
     private boolean isPublished;
     private int price;
+    private int quantity;
 
-    public Book(String title, Author author, int year, boolean isPublished, int price) {
+    public Book(String title, Author author, int year, boolean isPublished, int price, int quantity) {
+        this.id = "aaa";
         this.title = title;
         this.author = author;
         this.year = year;
         this.isPublished = isPublished;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public String getTitle() {
@@ -56,5 +62,21 @@ public class Book {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
