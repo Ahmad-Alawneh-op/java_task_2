@@ -1,6 +1,7 @@
 package com.example.java_task_2.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceCreator;
 
 public class Author {
     @Id

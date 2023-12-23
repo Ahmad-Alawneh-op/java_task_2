@@ -21,6 +21,12 @@ public class AuthorDAOImpl implements AuthorDAO {
     }
 
     @Override
+    public Author findAuthorByName(String name) {
+        Optional<Author> value = authorRepo.findAuthorByName(name);
+        return value.orElse(null);
+    }
+
+    @Override
     public List<Author> findAuthors() {
         return authorRepo.findAll();
     }

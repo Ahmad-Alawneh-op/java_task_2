@@ -1,6 +1,7 @@
 package com.example.java_task_2.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ public class Customer {
     private ArrayList<Book> purchasedBooks;
 
     public Customer(String name, String email, ArrayList<Book> purchasedBooks) {
-        this.id = "aaaa";
         this.name = name;
         this.email = email;
         this.purchasedBooks = purchasedBooks;

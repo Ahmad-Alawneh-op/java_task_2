@@ -19,17 +19,17 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping("/byId")
-    public Customer getAuthorById(@RequestParam(defaultValue = "") String id) {
+    public Customer getCustomerById(@RequestParam(defaultValue = "") String id) {
         return customerService.getCustomer(id);
     }
 
     @GetMapping("/all")
-    public List<Customer> getAllAuthors() {
+    public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @PostMapping("/create")
-    public ResponseEntity<SimpleJsonResponse> createAuthor (@RequestBody Customer customer) {
+    public ResponseEntity<SimpleJsonResponse> createCustomer (@RequestBody Customer customer) {
         try {
             customer.setId(UUID.randomUUID().toString());
             customerService.addCustomer(customer);
@@ -43,7 +43,7 @@ public class CustomerController {
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<SimpleJsonResponse> updateAuthor (@RequestBody Customer customer) {
+    public ResponseEntity<SimpleJsonResponse> updateCustomer (@RequestBody Customer customer) {
         if (customer.getId() == null) {
             SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
 
@@ -61,7 +61,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<SimpleJsonResponse> deleteAuthor (@RequestBody Customer customer) {
+    public ResponseEntity<SimpleJsonResponse> deleteCustomer (@RequestBody Customer customer) {
         if (customer.getId() == null) {
             SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
 

@@ -26,7 +26,7 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public List<Book> findBooksByAuthor(String authorId, boolean includeUnpublished) {
-        return bookRepo.findBooksByAuthorEmail(authorId, includeUnpublished);
+        return bookRepo.findBooksByAuthorId(authorId, includeUnpublished);
     }
 
     @Override

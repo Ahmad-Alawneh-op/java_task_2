@@ -1,7 +1,9 @@
 package com.example.java_task_2.controller;
 
+import com.example.java_task_2.data.Author;
 import com.example.java_task_2.data.Book;
 import com.example.java_task_2.data.SimpleJsonResponse;
+import com.example.java_task_2.service.AuthorService;
 import com.example.java_task_2.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +20,9 @@ import java.util.UUID;
 public class BookController {
     @Autowired
     BookService bookService;
+
+    @Autowired
+    AuthorService authorService;
 
     @GetMapping("/byId")
     public Book getBookById(@RequestParam(defaultValue = "") String id) {
@@ -29,8 +35,12 @@ public class BookController {
     }
 
     @GetMapping("/byAuthor")
-    public List<Book> getAllBooks(@RequestParam(defaultValue = "") String authorId, @RequestParam(defaultValue = "false") boolean includeUnpublished) {
-        return bookService.getBooksByAuthor(authorId, includeUnpublished);
+    public List<Book> getAllBooks(@RequestParam(defaultValue = "") String authorName, @RequestParam(defaultValue = "false") boolean includeUnpublished) {
+        Author author = authorService.getAuthorByName(authorName);
+        if (author == null) {
+            return new ArrayList<>();
+        }
+        return bookService.getBooksByAuthor(author.getId(), includeUnpublished);
     }
 
     @PostMapping("/create")

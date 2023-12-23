@@ -1,6 +1,7 @@
 package com.example.java_task_2.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 public class Book {
@@ -15,7 +16,6 @@ public class Book {
     private int quantity;
 
     public Book(String title, Author author, int year, boolean isPublished, int price, int quantity) {
-        this.id = "aaa";
         this.title = title;
         this.author = author;
         this.year = year;

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface AuthorDAO {
     Author findAuthor(String id);
+    Author findAuthorByName(String name);
     List<Author> findAuthors();
     Author createAuthor(Author author);
     Author updateAuthor(Author author);

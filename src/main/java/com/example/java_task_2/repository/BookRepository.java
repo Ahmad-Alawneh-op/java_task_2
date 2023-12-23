@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface BookRepository extends MongoRepository<Book, String> {
 
+    // THIS IS NOT ACCEPTING SEARCH BY AUTHOR NAME, WHY?
     @Query("{ 'author': ?0, $or: [{ 'isPublished': true }, { isPublished: { $ne: ?1 } }] }")
-    List<Book> findBooksByAuthorEmail(String authorEmail, boolean includeUnpublished);
+    List<Book> findBooksByAuthorId(String authorId, boolean includeUnpublished);
 }
