@@ -3,14 +3,12 @@ package com.example.java_task_2.data;
 import org.springframework.data.annotation.Id;
 
 public class Author {
-
     @Id
     private String id;
     private String name;
     private String email;
 
     public Author(String name, String email) {
-        this.id = "aaaa";
         this.name = name;
         this.email = email;
     }

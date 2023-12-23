@@ -1,6 +1,7 @@
 package com.example.java_task_2.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ public class Customer {
     private String id;
     private String name;
     private String email;
+    @DocumentReference
     private ArrayList<Book> purchasedBooks;
 
     public Customer(String name, String email, ArrayList<Book> purchasedBooks) {

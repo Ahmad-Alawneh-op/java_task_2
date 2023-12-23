@@ -23,8 +23,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getBooksByAuthor(String authorEmail, boolean includeUnpublished) {
-        return bookDAO.findBooksByAuthor(authorEmail, includeUnpublished);
+    public List<Book> getBooksByAuthor(String authorId, boolean includeUnpublished) {
+        return bookDAO.findBooksByAuthor(authorId, includeUnpublished);
     }
 
     @Override

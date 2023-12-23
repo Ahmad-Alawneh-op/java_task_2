@@ -7,7 +7,7 @@ public class Book {
     @Id
     private String id;
     private String title;
-    @DocumentReference()
+    @DocumentReference
     private Author author;
     private int year;
     private boolean isPublished;
