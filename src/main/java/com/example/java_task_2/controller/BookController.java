@@ -36,6 +36,7 @@ public class BookController {
 
     @GetMapping("/byAuthor")
     public List<Book> getAllBooks(@RequestParam(defaultValue = "") String authorName, @RequestParam(defaultValue = "false") boolean includeUnpublished) {
+        // @TODO: HOW CAN I MAKE THE QUERY USE THE NAME DIRECTLY
         Author author = authorService.getAuthorByName(authorName);
         if (author == null) {
             return new ArrayList<>();
