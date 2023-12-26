@@ -24,6 +24,7 @@ public class PaymentController {
     @Autowired
     BookService bookService;
 
+    // @TODO: Should this logic be moved to a new PaymentService file??
     @PostMapping("/purchase/{bookId}")
     public ResponseEntity<SimpleJsonResponse> purchaseBook(@RequestBody Map<String, String> customerData, @PathVariable String bookId) {
         try {
@@ -65,6 +66,7 @@ public class PaymentController {
         }
     }
 
+    // @TODO: Should this logic be moved to a new PaymentService file??
     @PostMapping("/refund/{bookId}")
     public ResponseEntity<SimpleJsonResponse> refundBook(@RequestBody Map<String, String> customerData, @PathVariable String bookId) {
         try {
