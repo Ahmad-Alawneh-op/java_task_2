@@ -11,13 +11,10 @@ public class Customer {
     private String id;
     private String name;
     private String email;
-    @DocumentReference
-    private ArrayList<Book> purchasedBooks;
 
-    public Customer(String name, String email, ArrayList<Book> purchasedBooks) {
+    public Customer(String name, String email) {
         this.name = name;
         this.email = email;
-        this.purchasedBooks = purchasedBooks;
     }
 
     public String getName() {
@@ -34,14 +31,6 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public ArrayList<Book> getPurchasedBooks() {
-        return purchasedBooks;
-    }
-
-    public void setPurchasedBooks(ArrayList<Book> purchasedBooks) {
-        this.purchasedBooks = purchasedBooks;
     }
 
     public String getId() {

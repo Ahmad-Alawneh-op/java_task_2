@@ -30,51 +30,33 @@ public class CustomerController {
 
     @PostMapping("/create")
     public ResponseEntity<SimpleJsonResponse> createCustomer (@RequestBody Customer customer) {
-        try {
-            customer.setId(UUID.randomUUID().toString());
-            customerService.addCustomer(customer);
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Customer created successfully: " + customer.getId(), 201, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.CREATED);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        customer.setId(UUID.randomUUID().toString());
+        customerService.addCustomer(customer);
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Customer created successfully: " + customer.getId(), 201, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.CREATED);
     }
 
     @PatchMapping("/update")
     public ResponseEntity<SimpleJsonResponse> updateCustomer (@RequestBody Customer customer) {
         if (customer.getId() == null) {
-            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
+            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, false);
 
             return new ResponseEntity<>(noIdResponse, new HttpHeaders(), HttpStatus.OK);
         }
-        try {
-            customerService.updateCustomer(customer);
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Customer updated successfully", 200, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        customerService.updateCustomer(customer);
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Customer updated successfully", 200, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<SimpleJsonResponse> deleteCustomer (@RequestBody Customer customer) {
         if (customer.getId() == null) {
-            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
+            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, false);
 
             return new ResponseEntity<>(noIdResponse, new HttpHeaders(), HttpStatus.OK);
         }
-        try {
-            customerService.deleteCustomer(customer.getId());
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author deleted successfully", 200, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        customerService.deleteCustomer(customer.getId());
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author deleted successfully", 200, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
     }
 }
