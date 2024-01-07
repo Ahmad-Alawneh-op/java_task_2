@@ -3,12 +3,12 @@ package com.example.java_task_2.data;
 public class SimpleJsonResponse {
     private String message;
     private int statusCode;
-    private boolean error;
+    private boolean success;
 
-    public SimpleJsonResponse(String message, int statusCode, boolean error) {
+    public SimpleJsonResponse(String message, int statusCode, boolean success) {
         this.message = message;
         this.statusCode = statusCode;
-        this.error = error;
+        this.success = success;
     }
 
     public String getMessage() {
@@ -27,11 +27,11 @@ public class SimpleJsonResponse {
         this.statusCode = statusCode;
     }
 
-    public boolean isError() {
-        return error;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setError(boolean error) {
-        this.error = error;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

@@ -30,51 +30,33 @@ public class AuthorController {
 
     @PostMapping("/create")
     public ResponseEntity<SimpleJsonResponse> createAuthor (@RequestBody Author author) {
-        try {
-            author.setId(UUID.randomUUID().toString());
-            authorService.addAuthor(author);
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author created successfully: " + author.getId(), 201, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.CREATED);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        author.setId(UUID.randomUUID().toString());
+        authorService.addAuthor(author);
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author created successfully: " + author.getId(), 201, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.CREATED);
     }
 
     @PatchMapping("/update")
     public ResponseEntity<SimpleJsonResponse> updateAuthor (@RequestBody Author author) {
         if (author.getId() == null) {
-            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
+            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, false);
 
             return new ResponseEntity<>(noIdResponse, new HttpHeaders(), HttpStatus.OK);
         }
-        try {
-            authorService.updateAuthor(author);
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author updated successfully", 200, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        authorService.updateAuthor(author);
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author updated successfully", 200, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<SimpleJsonResponse> deleteAuthor (@RequestBody Author author) {
         if (author.getId() == null) {
-            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
+            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, false);
 
             return new ResponseEntity<>(noIdResponse, new HttpHeaders(), HttpStatus.OK);
         }
-        try {
-            authorService.deleteAuthor(author.getId());
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author deleted successfully", 200, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        authorService.deleteAuthor(author.getId());
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Author deleted successfully", 200, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
     }
 }

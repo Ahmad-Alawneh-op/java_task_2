@@ -3,6 +3,8 @@ package com.example.java_task_2.data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
 
+import java.util.Objects;
+
 public class Author {
     @Id
     private String id;
@@ -36,5 +38,13 @@ public class Author {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(name, author.name) && Objects.equals(email, author.email);
     }
 }
