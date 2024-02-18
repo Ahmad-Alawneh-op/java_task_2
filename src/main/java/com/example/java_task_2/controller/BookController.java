@@ -46,51 +46,33 @@ public class BookController {
 
     @PostMapping("/create")
     public ResponseEntity<SimpleJsonResponse> createBook (@RequestBody Book book) {
-        try {
-            book.setId(UUID.randomUUID().toString());
-            bookService.addBook(book);
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Book created successfully: " + book.getId(), 201, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.CREATED);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        book.setId(UUID.randomUUID().toString());
+        bookService.addBook(book);
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Book created successfully: " + book.getId(), 201, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.CREATED);
     }
 
     @PatchMapping("/update")
     public ResponseEntity<SimpleJsonResponse> updateBook (@RequestBody Book book) {
         if (book.getId() == null) {
-            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
+            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, false);
 
             return new ResponseEntity<>(noIdResponse, new HttpHeaders(), HttpStatus.OK);
         }
-        try {
-            bookService.updateBook(book);
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Book updated successfully", 200, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        bookService.updateBook(book);
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Book updated successfully", 200, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<SimpleJsonResponse> deleteBook (@RequestBody Book book) {
         if (book.getId() == null) {
-            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, true);
+            SimpleJsonResponse noIdResponse = new SimpleJsonResponse("Id must be provided", 200, false);
 
             return new ResponseEntity<>(noIdResponse, new HttpHeaders(), HttpStatus.OK);
         }
-        try {
-            bookService.deleteBook(book.getId());
-            SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Book deleted successfully", 200, false);
-            return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
-        } catch (Exception e) {
-            SimpleJsonResponse failedResponse = new SimpleJsonResponse(e.getMessage(), 200, true);
-
-            return new ResponseEntity<>(failedResponse, new HttpHeaders(), HttpStatus.OK);
-        }
+        bookService.deleteBook(book.getId());
+        SimpleJsonResponse successfulResponse = new SimpleJsonResponse("Book deleted successfully", 200, true);
+        return new ResponseEntity<>(successfulResponse, new HttpHeaders(), HttpStatus.OK);
     }
 }
